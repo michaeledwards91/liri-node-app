@@ -49,7 +49,6 @@ function omdbMovie(movie) {
 			console.log("Rotten Tomatoes Rating: " + data.tomato.rating);
 			console.log("Rotten Tomatoes URL: " + data.tomato.url);
 		}
-		console.log(data);
 		
 	})
 }
@@ -57,43 +56,56 @@ function omdbMovie(movie) {
 function doWhatItSays() {
 	fs.readFile("random.txt", "utf8", function(error, data) {
 		console.log(data);
+		console.log(typeof data);
+		var args = data.split(",");
+		console.log(args);
+		nodeArgs[2] = args[0];
+		query = args[1];
+		liri();
 	})
 }
 
 var nodeArgs = process.argv;
 var query = ""; //var to hold the node args after the action nodearg, aka what will be searched for
 
-if (nodeArgs.length > 3) {
-	var queryArray = [];
-	for (var i = 3; i < nodeArgs.length; i++) {
-		queryArray.push(nodeArgs[i]);
+function liri() {
+	if (nodeArgs.length > 3) {
+		var queryArray = [];
+		for (var i = 3; i < nodeArgs.length; i++) {
+			queryArray.push(nodeArgs[i]);
+		}
+
+		query = queryArray.join(" ");
 	}
 
-	query = queryArray.join(" ");
-}
 
-
-if (nodeArgs[2] === "my-tweets") {
-	getMyTweets();
-}
-
-if (nodeArgs[2] === "spotify-this-song") {
-	console.log(query);
-	if (query === "") {
-		spotifySong("The Sign Ace of Base");
-	} else {
-		spotifySong(query);
+	if (nodeArgs[2] === "my-tweets") {
+		getMyTweets();
 	}
+
+	if (nodeArgs[2] === "spotify-this-song") {
+		console.log(query);
+		if (query === "") {
+			spotifySong("The Sign Ace of Base");
+		} else {
+			spotifySong(query);
+		}
+	}
+
+	if (nodeArgs[2] === "movie-this") {
+		if (query ==="") {
+			omdbMovie("Mr. Nobody");
+		} else {
+			omdbMovie(query);
+		}
+	}	
 }
 
-if (nodeArgs[2] === "movie-this") {
-	if (query ==="") {
-		omdbMovie("Mr. Nobody");
-	} else {
-		omdbMovie(query);
-	}
-}
+liri();
 
 if (nodeArgs[2] === "do-what-it-says") {
-	
+	doWhatItSays();
 }
+
+//THINGS NOT DONE: work around the possibility of multiple commas in random.txt, find language in omdb response
+//clean up code, add comments
