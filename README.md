@@ -3,13 +3,13 @@ Node App
 
 This is a node application that takes in 4 possible commands:
 
-1. my-tweets
+1) my-tweets
 
 my-tweets will display my latest 20 tweets and the date/time they were created. my-tweets takes no parameters.
 
-ex) node liri.js my-tweets
+ex. node liri.js my-tweets
 
-2. spotify-this-song
+2) spotify-this-song
 
 spotify-this-song followed by a song name will query the Spotify API for the given song name and display the songs artist, track name, preview URL, and album title.
 
