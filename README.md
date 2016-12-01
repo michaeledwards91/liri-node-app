@@ -28,5 +28,5 @@ do-what-it-says reads the text inside the random.txt file and performs either my
 random.txt should follow this syntax:
 do-this,"query"
 
-<strong>ex)</strong> movie-this,"Iron Giant"     //random.txt
+<strong>ex)</strong> movie-this,"Iron Giant"     //random.txt <br>
 node liri.js do-what-it-says
