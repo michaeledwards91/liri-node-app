@@ -42,23 +42,19 @@ function omdbMovie(movie) {
 		console.log("Year: " + data.year);
 		console.log("IMDB Rating: " + data.imdb.rating);
 		console.log("Countries of production: " + data.countries.join(", "));
-		console.log("Language: " + data.language);
+		console.log("Language: " + data.language); //response doesn't include language??
 		console.log("Plot: " + data.plot);
 		console.log("Actors: " + data.actors.join(", "));
 		if (data.tomato) {
 			console.log("Rotten Tomatoes Rating: " + data.tomato.rating);
 			console.log("Rotten Tomatoes URL: " + data.tomato.url);
 		}
-		
 	})
 }
 
 function doWhatItSays() {
 	fs.readFile("random.txt", "utf8", function(error, data) {
-		console.log(data);
-		console.log(typeof data);
 		var args = data.split(",");
-		console.log(args);
 		nodeArgs[2] = args[0];
 		query = args[1];
 		liri();
@@ -84,7 +80,6 @@ function liri() {
 	}
 
 	if (nodeArgs[2] === "spotify-this-song") {
-		console.log(query);
 		if (query === "") {
 			spotifySong("The Sign Ace of Base");
 		} else {
@@ -101,11 +96,8 @@ function liri() {
 	}	
 }
 
-liri();
-
 if (nodeArgs[2] === "do-what-it-says") {
 	doWhatItSays();
 }
 
-//THINGS NOT DONE: work around the possibility of multiple commas in random.txt, find language in omdb response
-//clean up code, add comments
+liri();
